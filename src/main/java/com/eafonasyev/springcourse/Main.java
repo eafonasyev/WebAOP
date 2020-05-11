@@ -11,7 +11,14 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
         AccountDao dao = context.getBean("accountDao",AccountDao.class);
         System.out.println("------------------------------------------------------------");
-        List<Account> accounts = dao.findAccounts();
+
+        List<Account> accounts = null;
+
+        try {
+            accounts   = dao.findAccounts();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(accounts);
         context.close();
     }
